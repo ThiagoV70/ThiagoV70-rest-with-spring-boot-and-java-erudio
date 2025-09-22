@@ -31,5 +31,54 @@ public class MathController {
         String number  = strNumber.replaceAll(",", ".");
         return number.matches("[+-]?[0-9]*\\.?[0-9]+");
     }
+
+    @RequestMapping("/subtraction/{numberOne}/{numberTwo}")
+    public double subtraction (
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo) throws Exception {
+
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo))
+            throw new UnsupportedOperationException("Please set a numeric value");
+        return ConvertToDouble(numberOne) - ConvertToDouble(numberTwo);
+    }
+
+    @RequestMapping("/multiplication/{numberOne}/{numberTwo}")
+    public double multiplication (
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo) throws Exception {
+
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo))
+            throw new UnsupportedOperationException("Please set a numeric value");
+        return ConvertToDouble(numberOne) * ConvertToDouble(numberTwo);
+    }
+
+    @RequestMapping("/division/{numberOne}/{numberTwo}")
+    public double division (
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo) throws Exception {
+
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo))
+            throw new UnsupportedOperationException("Please set a numeric value");
+        return ConvertToDouble(numberOne) / ConvertToDouble(numberTwo);
+    }
+
+    @RequestMapping("/mean/{numberOne}/{numberTwo}")
+    public double mean (
+            @PathVariable("numberOne") String numberOne,
+            @PathVariable("numberTwo") String numberTwo) throws Exception {
+
+        if (!isNumeric(numberOne) || !isNumeric(numberTwo))
+            throw new UnsupportedOperationException("Please set a numeric value");
+        return (ConvertToDouble(numberOne) + ConvertToDouble(numberTwo)) / 2;
+    }
+
+    @RequestMapping("/squareRoot/{numberOne}")
+    public double squareRoot (
+            @PathVariable("numberOne") String numberOne) throws Exception {
+
+        if (!isNumeric(numberOne))
+            throw new UnsupportedOperationException("Please set a numeric value");
+        return Math.sqrt(ConvertToDouble(numberOne));
+    }
 }
 
